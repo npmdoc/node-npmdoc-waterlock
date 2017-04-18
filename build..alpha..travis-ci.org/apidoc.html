@@ -1,0 +1,271 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="http://waterlock.ninja/"
+
+    >waterlock (v0.1.0)</a>
+</h1>
+<h4>User authentication and Json Web Tokens for Sails</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock">module waterlock</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.utils">module waterlock.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.utils.accessObjectLikeArray">
+            function <span class="apidocSignatureSpan">waterlock.utils.</span>accessObjectLikeArray
+            <span class="apidocSignatureSpan">(index, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.utils.allParams">
+            function <span class="apidocSignatureSpan">waterlock.utils.</span>allParams
+            <span class="apidocSignatureSpan">(req)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.utils.countTopLevel">
+            function <span class="apidocSignatureSpan">waterlock.utils.</span>countTopLevel
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.utils.createJwt">
+            function <span class="apidocSignatureSpan">waterlock.utils.</span>createJwt
+            <span class="apidocSignatureSpan">(req, res, user)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock" id="apidoc.module.waterlock">module waterlock</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.utils" id="apidoc.module.waterlock.utils">module waterlock.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.utils.accessObjectLikeArray" id="apidoc.element.waterlock.utils.accessObjectLikeArray">
+        function <span class="apidocSignatureSpan">waterlock.utils.</span>accessObjectLikeArray
+        <span class="apidocSignatureSpan">(index, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">accessObjectLikeArray = function (index, obj){
+  // if obj is not an object just return it nothing to do
+  if(typeof obj !== &#x27;object&#x27;){
+    return obj;
+  }
+
+  // if object already is an array return the value at given index
+  if(typeof obj[index] !== &#x27;undefined&#x27;){
+    return obj[index];
+  }
+
+  var count = 0;
+  for(var key in obj){
+    if(count === index){
+      return obj[key];
+    }
+    count++;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.utils.allParams" id="apidoc.element.waterlock.utils.allParams">
+        function <span class="apidocSignatureSpan">waterlock.utils.</span>allParams
+        <span class="apidocSignatureSpan">(req)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">allParams = function (req){
+  var params = req.params.all();
+  _.merge(params, req.headers);
+  return _.merge(params, req.query);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+     *
+     * @param  {Express request}   req the Express request object
+     * @param  {Function} cb  Callback when to be called when token
+     *                        has been validated or an error has occured
+     */
+    validateTokenRequest: function(req, cb){
+      var self = this;
+      var token = waterlock._utils.<span class="apidocCodeKeywordSpan">allParams</span>(req).access_token;
+
+      if(token){
+
+// validate the token
+this.validateToken(token, function(err, user){
+  if(err){
+    waterlock.logger.debug(err);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.utils.countTopLevel" id="apidoc.element.waterlock.utils.countTopLevel">
+        function <span class="apidocSignatureSpan">waterlock.utils.</span>countTopLevel
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">countTopLevel = function (obj){
+  if(typeof obj !== &#x27;object&#x27;){
+    return -1;
+  }
+
+  var count = 0;
+  for(var key in obj){
+    if(obj.hasOwnProperty(key)){
+      count++;
+    }
+  }
+  return count;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.utils.createJwt" id="apidoc.element.waterlock.utils.createJwt">
+        function <span class="apidocSignatureSpan">waterlock.utils.</span>createJwt
+        <span class="apidocSignatureSpan">(req, res, user)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createJwt = function (req, res, user) {
+  var jsonWebTokens = waterlock.config.jsonWebTokens || {};
+  var expiryUnit = (jsonWebTokens.expiry &#x26;&#x26; jsonWebTokens.expiry.unit) || &#x27;days&#x27;;
+  var expiryLength = (jsonWebTokens.expiry &#x26;&#x26; jsonWebTokens.expiry.length) || 7;
+  var expires = moment().add(expiryLength, expiryUnit).valueOf();
+  var issued = Date.now();
+  user = user || req.session.user;
+
+  var token = jwt.encode({
+    iss: user.id + &#x27;|&#x27; + req.remoteAddress,
+    sub: jsonWebTokens.subject,
+    aud: jsonWebTokens.audience,
+    exp: expires,
+    nbf: issued,
+    iat: issued,
+    jti: uuid.v1()
+  }, jsonWebTokens.secret);
+
+  return {
+    token: token,
+    expires: expires
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      req.session.authenticated = true;
+
+      // now respond or redirect
+      var postResponse = this._resolvePostAction(waterlock.config.postActions.register.success, user);
+
+      if (postResponse === &#x27;jwt&#x27;) {
+        //Returns the token immediately
+        var jwtData = waterlock._utils.<span class="apidocCodeKeywordSpan">createJwt</span>(req, res, user);
+
+        Jwt.create({token: jwtData.token, uses: 0, owner: user.id}).exec(function(err){
+if(err){
+  return res.serverError(&#x27;JSON web token could not be created&#x27;);
+}
+
+var result = {};
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
