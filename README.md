@@ -1,6 +1,6 @@
 # npmdoc-waterlock
 
-#### api documentation for  [waterlock (v0.1.0)](http://waterlock.ninja/)  [![npm package](https://img.shields.io/npm/v/npmdoc-waterlock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-waterlock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-waterlock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-waterlock)
+#### basic api documentation for  [waterlock (v0.1.0)](http://waterlock.ninja/)  [![npm package](https://img.shields.io/npm/v/npmdoc-waterlock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-waterlock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-waterlock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-waterlock)
 
 #### User authentication and Json Web Tokens for Sails
 
