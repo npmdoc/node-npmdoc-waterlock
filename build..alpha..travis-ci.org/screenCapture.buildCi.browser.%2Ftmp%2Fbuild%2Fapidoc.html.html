@@ -56,7 +56,120 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>attempt</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>auth</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>jwt</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>use</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>user</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">waterlock.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.attempt">module waterlock.attempt</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.attempt.attributes">
+            function <span class="apidocSignatureSpan">waterlock.attempt.</span>attributes
+            <span class="apidocSignatureSpan">(attributes)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.auth">module waterlock.auth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.auth.attributes">
+            function <span class="apidocSignatureSpan">waterlock.auth.</span>attributes
+            <span class="apidocSignatureSpan">(attributes)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.auth.beforeCreate">
+            function <span class="apidocSignatureSpan">waterlock.auth.</span>beforeCreate
+            <span class="apidocSignatureSpan">(values, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.auth.beforeUpdate">
+            function <span class="apidocSignatureSpan">waterlock.auth.</span>beforeUpdate
+            <span class="apidocSignatureSpan">(values, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.jwt">module waterlock.jwt</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.jwt.attributes">
+            function <span class="apidocSignatureSpan">waterlock.jwt.</span>attributes
+            <span class="apidocSignatureSpan">(attributes)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.use">module waterlock.use</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.use.attributes">
+            function <span class="apidocSignatureSpan">waterlock.use.</span>attributes
+            <span class="apidocSignatureSpan">(attributes)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.waterlock.user">module waterlock.user</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.waterlock.user.attributes">
+            function <span class="apidocSignatureSpan">waterlock.user.</span>attributes
+            <span class="apidocSignatureSpan">(attributes)</span>
+            </a>
 
         </li>
 
@@ -109,6 +222,365 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.attempt" id="apidoc.module.waterlock.attempt">module waterlock.attempt</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.attempt.attributes" id="apidoc.element.waterlock.attempt.attributes">
+        function <span class="apidocSignatureSpan">waterlock.attempt.</span>attributes
+        <span class="apidocSignatureSpan">(attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attributes = function (attributes){
+  var _ = require('lodash');
+
+  var template = {
+    user:{
+      model: 'user'
+    },
+    successful:{
+      type: 'boolean',
+      defaultsTo: false
+    },
+    ip:{
+      type: 'string'
+    },
+    port:{
+      type: 'string'
+    }
+  };
+
+  return _.merge(template, attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+now with your policies applied to your custom controller you're good to go! (given you've actually implemented some login
+ in them e.g. `res.view()`)
+
+# How can I customize it?
+Waterlock wraps around models and controllers so you can override any of the actions and definition that are predefined. After running
+ `waterlock generate all` open up the `User.js` file you'll see this:
+```js
+  attributes: require('waterlock').models.user.<span class="apidocCodeKeywordSpan">attributes</span>({
+
+    /* e.g.
+    nickname: 'string'
+    */
+
+  }),
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.auth" id="apidoc.module.waterlock.auth">module waterlock.auth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.auth.attributes" id="apidoc.element.waterlock.auth.attributes">
+        function <span class="apidocSignatureSpan">waterlock.auth.</span>attributes
+        <span class="apidocSignatureSpan">(attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attributes = function (attributes){
+  var _ = require('lodash');
+  var methods = waterlock.methods;
+
+  for(var key in methods){
+    var method = methods[key];
+    if(method.hasOwnProperty('model')){
+      // call the decorator of each auth method
+      method.model.auth.attributes(attributes);
+    }
+  }
+
+  var template = {
+    user:{
+      model: 'user'
+    }
+  };
+
+  return _.merge(template, attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+now with your policies applied to your custom controller you're good to go! (given you've actually implemented some login
+ in them e.g. `res.view()`)
+
+# How can I customize it?
+Waterlock wraps around models and controllers so you can override any of the actions and definition that are predefined. After running
+ `waterlock generate all` open up the `User.js` file you'll see this:
+```js
+  attributes: require('waterlock').models.user.<span class="apidocCodeKeywordSpan">attributes</span>({
+
+    /* e.g.
+    nickname: 'string'
+    */
+
+  }),
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.auth.beforeCreate" id="apidoc.element.waterlock.auth.beforeCreate">
+        function <span class="apidocSignatureSpan">waterlock.auth.</span>beforeCreate
+        <span class="apidocSignatureSpan">(values, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">beforeCreate = function (values, cb){
+  var methods = waterlock.methods;
+  for(var key in methods){
+    var model = methods[key].model.auth;
+    if(model.hasOwnProperty('beforeCreate')){
+      model.beforeCreate(values);
+    }
+  }
+
+  cb();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param  {Function} cb
+ */
+exports.beforeCreate = function(values, cb){
+  var methods = waterlock.methods;
+  for(var key in methods){
+    var model = methods[key].model.auth;
+    if(model.hasOwnProperty('beforeCreate')){
+      model.<span class="apidocCodeKeywordSpan">beforeCreate</span>(values);
+    }
+  }
+
+  cb();
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.auth.beforeUpdate" id="apidoc.element.waterlock.auth.beforeUpdate">
+        function <span class="apidocSignatureSpan">waterlock.auth.</span>beforeUpdate
+        <span class="apidocSignatureSpan">(values, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">beforeUpdate = function (values, cb){
+  var methods = waterlock.methods;
+  for(var key in methods){
+    var model = methods[key].model.auth;
+    if(model.hasOwnProperty('beforeUpdate')){
+      model.beforeUpdate(values);
+    }
+  }
+
+  cb();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param  {Function} cb
+ */
+exports.beforeUpdate = function(values, cb){
+  var methods = waterlock.methods;
+  for(var key in methods){
+    var model = methods[key].model.auth;
+    if(model.hasOwnProperty('beforeUpdate')){
+      model.<span class="apidocCodeKeywordSpan">beforeUpdate</span>(values);
+    }
+  }
+
+  cb();
+};
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.jwt" id="apidoc.module.waterlock.jwt">module waterlock.jwt</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.jwt.attributes" id="apidoc.element.waterlock.jwt.attributes">
+        function <span class="apidocSignatureSpan">waterlock.jwt.</span>attributes
+        <span class="apidocSignatureSpan">(attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attributes = function (attributes){
+  var _ = require('lodash');
+
+  var template = {
+    token: {
+      type: 'text',
+      maxLength: 512
+    },
+    uses: {
+      collection: 'use',
+      via: 'jsonWebToken'
+    },
+    owner: {
+      model: 'user'
+    },
+    revoked: {
+      type: 'boolean',
+      defaultsTo: false
+    }
+  };
+
+  return _.merge(template, attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+now with your policies applied to your custom controller you're good to go! (given you've actually implemented some login
+ in them e.g. `res.view()`)
+
+# How can I customize it?
+Waterlock wraps around models and controllers so you can override any of the actions and definition that are predefined. After running
+ `waterlock generate all` open up the `User.js` file you'll see this:
+```js
+  attributes: require('waterlock').models.user.<span class="apidocCodeKeywordSpan">attributes</span>({
+
+    /* e.g.
+    nickname: 'string'
+    */
+
+  }),
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.use" id="apidoc.module.waterlock.use">module waterlock.use</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.use.attributes" id="apidoc.element.waterlock.use.attributes">
+        function <span class="apidocSignatureSpan">waterlock.use.</span>attributes
+        <span class="apidocSignatureSpan">(attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attributes = function (attributes){
+  var _ = require('lodash');
+
+  var template = {
+    remoteAddress: {
+      type: 'string'
+    },
+    jsonWebToken: {
+      model: 'jwt'
+    },
+  };
+
+  return _.merge(template, attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+now with your policies applied to your custom controller you're good to go! (given you've actually implemented some login
+ in them e.g. `res.view()`)
+
+# How can I customize it?
+Waterlock wraps around models and controllers so you can override any of the actions and definition that are predefined. After running
+ `waterlock generate all` open up the `User.js` file you'll see this:
+```js
+  attributes: require('waterlock').models.user.<span class="apidocCodeKeywordSpan">attributes</span>({
+
+    /* e.g.
+    nickname: 'string'
+    */
+
+  }),
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.waterlock.user" id="apidoc.module.waterlock.user">module waterlock.user</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.waterlock.user.attributes" id="apidoc.element.waterlock.user.attributes">
+        function <span class="apidocSignatureSpan">waterlock.user.</span>attributes
+        <span class="apidocSignatureSpan">(attributes)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attributes = function (attributes){
+  var _ = require('lodash');
+
+
+  var template = {
+    attempts: {
+      collection: 'attempt',
+      via: 'user'
+    },
+    jsonWebTokens: {
+      collection: 'jwt',
+      via: 'owner'
+    },
+    auth:{
+      model: 'auth'
+    }
+  };
+
+  return _.merge(template, attributes);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+now with your policies applied to your custom controller you're good to go! (given you've actually implemented some login
+ in them e.g. `res.view()`)
+
+# How can I customize it?
+Waterlock wraps around models and controllers so you can override any of the actions and definition that are predefined. After running
+ `waterlock generate all` open up the `User.js` file you'll see this:
+```js
+  attributes: require('waterlock').models.user.<span class="apidocCodeKeywordSpan">attributes</span>({
+
+    /* e.g.
+    nickname: 'string'
+    */
+
+  }),
+```
+...</pre></li>
+    </ul>
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -141,7 +613,24 @@
     count++;
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * GET /auth/login
+ */
+module.exports = function(req, res){
+var params = waterlock._utils.allParams(req);
+
+// If there is only 1 chosen auth method just assume it
+if(waterlock._utils.countTopLevel(waterlock.methods) === 1){
+  params.type = waterlock._utils.<span class="apidocCodeKeywordSpan">accessObjectLikeArray</span>(0, waterlock.methods).authType
+;
+}
+
+if(typeof params.type === 'undefined'){
+  return res.badRequest('You must specify a type parameter.');
+}
+
+if(waterlock.methods.hasOwnProperty(params.type)){
+...</pre></li>
     </ul>
 
 
@@ -199,7 +688,22 @@ this.validateToken(token, function(err, user){
   }
   return count;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ * GET /auth/login
+ */
+module.exports = function(req, res){
+var params = waterlock._utils.allParams(req);
+
+// If there is only 1 chosen auth method just assume it
+if(waterlock._utils.<span class="apidocCodeKeywordSpan">countTopLevel</span>(waterlock.methods) === 1){
+  params.type = waterlock._utils.accessObjectLikeArray(0, waterlock.methods).authType;
+}
+
+if(typeof params.type === 'undefined'){
+  return res.badRequest('You must specify a type parameter.');
+}
+...</pre></li>
     </ul>
 
 
